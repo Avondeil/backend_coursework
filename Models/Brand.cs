@@ -11,6 +11,9 @@ public partial class Brand
     public string Name { get; set; } = null!;
 
     [JsonIgnore]
+    public virtual ICollection<Bodytype> Bodytypes { get; set; } = new List<Bodytype>();
+
+    [JsonIgnore]
     public virtual ICollection<Model> Models { get; set; } = new List<Model>();
 
     [JsonIgnore]

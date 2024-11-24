@@ -16,6 +16,8 @@ public partial class ApplicationDbContext : DbContext
     {
     }
 
+    public virtual DbSet<Bodytype> Bodytypes { get; set; }
+
     public virtual DbSet<Brand> Brands { get; set; }
 
     public virtual DbSet<Generation> Generations { get; set; }
@@ -38,6 +40,33 @@ public partial class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Bodytype>(entity =>
+        {
+            entity.HasKey(e => e.Bodytypeid).HasName("bodytypes_pkey");
+
+            entity.ToTable("bodytypes");
+
+            entity.Property(e => e.Bodytypeid).HasColumnName("bodytypeid");
+            entity.Property(e => e.BrandId).HasColumnName("brand_id");
+            entity.Property(e => e.GenerationId).HasColumnName("generation_id");
+            entity.Property(e => e.ModelId).HasColumnName("model_id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(100)
+                .HasColumnName("name");
+
+            entity.HasOne(d => d.Brand).WithMany(p => p.Bodytypes)
+                .HasForeignKey(d => d.BrandId)
+                .HasConstraintName("bodytypes_brand_id_fkey");
+
+            entity.HasOne(d => d.Generation).WithMany(p => p.Bodytypes)
+                .HasForeignKey(d => d.GenerationId)
+                .HasConstraintName("bodytypes_generation_id_fkey");
+
+            entity.HasOne(d => d.Model).WithMany(p => p.Bodytypes)
+                .HasForeignKey(d => d.ModelId)
+                .HasConstraintName("bodytypes_model_id_fkey");
+        });
+
         modelBuilder.Entity<Brand>(entity =>
         {
             entity.HasKey(e => e.BrandId).HasName("brands_pkey");
