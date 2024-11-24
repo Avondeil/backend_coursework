@@ -8,19 +8,16 @@ public partial class Model
 {
     public int ModelId { get; set; }
 
-    public int? BrandId { get; set; }
+    public int BrandId { get; set; }
 
     public string Name { get; set; } = null!;
 
     [JsonIgnore]
-    public virtual ICollection<Bodytype> Bodytypes { get; set; } = new List<Bodytype>();
+    public virtual ICollection<BodyTypesCar> BodyTypesCars { get; set; } = new List<BodyTypesCar>();
 
     [JsonIgnore]
-    public virtual Brand? Brand { get; set; }
+    public virtual Brand Brand { get; set; } = null!;
 
     [JsonIgnore]
     public virtual ICollection<Generation> Generations { get; set; } = new List<Generation>();
-
-    [JsonIgnore]
-    public virtual ICollection<Part> Parts { get; set; } = new List<Part>();
 }

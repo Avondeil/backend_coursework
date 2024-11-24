@@ -1,4 +1,5 @@
 ﻿using api_details.Data;
+using api_details.DataTransfer;
 using api_details.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,7 +7,7 @@ namespace api_details.Services
 {
     public interface IBodyTypeService
     {
-        Task<List<Bodytype>> GetBodyTypesByGenerationIdAsync(int generationId);
+        Task<List<BodyTypesCarResponse>> GetBodyTypesByGenerationIdAsync(int generationId);
     }
 
     public class BodyTypeService : IBodyTypeService
@@ -18,11 +19,22 @@ namespace api_details.Services
             _context = context;
         }
 
-        public async Task<List<Bodytype>> GetBodyTypesByGenerationIdAsync(int generationId)
+        public async Task<List<BodyTypesCarResponse>> GetBodyTypesByGenerationIdAsync(int generationId)
         {
-            return await _context.Bodytypes
-                                 .Where(bt => bt.GenerationId == generationId)
-                                 .ToListAsync();
+            var bodyTypes = await _context.BodyTypesCars
+            .Where(bt => bt.GenerationId == generationId)
+            .Include(bt => bt.BodyType) 
+            .Select(bt => new BodyTypesCarResponse
+            {
+               Bodytypeid = bt.Bodytypeid,
+               BrandId = bt.BrandId,
+               ModelId = bt.ModelId,
+               GenerationId = bt.GenerationId,
+               BodyTypeName = bt.BodyType.Name
+            }).ToListAsync();
+            return bodyTypes;
         }
+
+
     }
 }

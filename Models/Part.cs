@@ -25,12 +25,6 @@ public partial class Part
 
     public int? GenerationId { get; set; }
 
-    public virtual Brand? Brand { get; set; }
-
-    public virtual Generation? Generation { get; set; }
-
-    public virtual Model? Model { get; set; }
-
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     public virtual ICollection<UserHistory> UserHistories { get; set; } = new List<UserHistory>();

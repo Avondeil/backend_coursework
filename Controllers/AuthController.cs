@@ -5,9 +5,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using api_details.Models;
-using api_details.Data;
 using api_details.DataTransfer;
 using System.Security.Cryptography;
+using api_details.Data;
 
 namespace api_details.Controllers
 {

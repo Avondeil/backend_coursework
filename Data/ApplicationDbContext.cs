@@ -16,7 +16,9 @@ public partial class ApplicationDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Bodytype> Bodytypes { get; set; }
+    public virtual DbSet<BodyType> BodyTypes { get; set; }
+
+    public virtual DbSet<BodyTypesCar> BodyTypesCars { get; set; }
 
     public virtual DbSet<Brand> Brands { get; set; }
 
@@ -36,33 +38,49 @@ public partial class ApplicationDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=EKBDetal_Base;Username=postgres;Password=12344321");
+        => optionsBuilder.UseNpgsql("Host=localhost;Database=EKBDetal_Base;Username=postgres;Password=12344321");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Bodytype>(entity =>
+        modelBuilder.Entity<BodyType>(entity =>
+        {
+            entity.HasKey(e => e.BodyTypeId).HasName("body_types_pkey");
+
+            entity.ToTable("body_types");
+
+            entity.Property(e => e.BodyTypeId).HasColumnName("body_type_id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(255)
+                .HasColumnName("name");
+        });
+
+        modelBuilder.Entity<BodyTypesCar>(entity =>
         {
             entity.HasKey(e => e.Bodytypeid).HasName("bodytypes_pkey");
 
-            entity.ToTable("bodytypes");
+            entity.ToTable("bodytypes_car");
 
-            entity.Property(e => e.Bodytypeid).HasColumnName("bodytypeid");
+            entity.Property(e => e.Bodytypeid)
+                .HasDefaultValueSql("nextval('bodytypes_bodytypeid_seq'::regclass)")
+                .HasColumnName("bodytypeid");
+            entity.Property(e => e.BodyTypeId).HasColumnName("body_type_id");
             entity.Property(e => e.BrandId).HasColumnName("brand_id");
             entity.Property(e => e.GenerationId).HasColumnName("generation_id");
             entity.Property(e => e.ModelId).HasColumnName("model_id");
-            entity.Property(e => e.Name)
-                .HasMaxLength(100)
-                .HasColumnName("name");
 
-            entity.HasOne(d => d.Brand).WithMany(p => p.Bodytypes)
+            entity.HasOne(d => d.BodyType).WithMany(p => p.BodyTypesCars)
+                .HasForeignKey(d => d.BodyTypeId)
+                .HasConstraintName("bodytypes_body_type_id_fkey");
+
+            entity.HasOne(d => d.Brand).WithMany(p => p.BodyTypesCars)
                 .HasForeignKey(d => d.BrandId)
                 .HasConstraintName("bodytypes_brand_id_fkey");
 
-            entity.HasOne(d => d.Generation).WithMany(p => p.Bodytypes)
+            entity.HasOne(d => d.Generation).WithMany(p => p.BodyTypesCars)
                 .HasForeignKey(d => d.GenerationId)
                 .HasConstraintName("bodytypes_generation_id_fkey");
 
-            entity.HasOne(d => d.Model).WithMany(p => p.Bodytypes)
+            entity.HasOne(d => d.Model).WithMany(p => p.BodyTypesCars)
                 .HasForeignKey(d => d.ModelId)
                 .HasConstraintName("bodytypes_model_id_fkey");
         });
@@ -75,7 +93,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity.Property(e => e.BrandId).HasColumnName("brand_id");
             entity.Property(e => e.Name)
-                .HasMaxLength(100)
+                .HasMaxLength(255)
                 .HasColumnName("name");
         });
 
@@ -87,7 +105,9 @@ public partial class ApplicationDbContext : DbContext
 
             entity.Property(e => e.GenerationId).HasColumnName("generation_id");
             entity.Property(e => e.ModelId).HasColumnName("model_id");
-            entity.Property(e => e.Year).HasColumnName("year");
+            entity.Property(e => e.Year)
+                .HasMaxLength(255)
+                .HasColumnName("year");
 
             entity.HasOne(d => d.Model).WithMany(p => p.Generations)
                 .HasForeignKey(d => d.ModelId)
@@ -103,7 +123,7 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.ModelId).HasColumnName("model_id");
             entity.Property(e => e.BrandId).HasColumnName("brand_id");
             entity.Property(e => e.Name)
-                .HasMaxLength(100)
+                .HasMaxLength(255)
                 .HasColumnName("name");
 
             entity.HasOne(d => d.Brand).WithMany(p => p.Models)
@@ -179,18 +199,6 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.StockQuantity)
                 .HasDefaultValue(0)
                 .HasColumnName("stock_quantity");
-
-            entity.HasOne(d => d.Brand).WithMany(p => p.Parts)
-                .HasForeignKey(d => d.BrandId)
-                .HasConstraintName("parts_brand_id_fkey");
-
-            entity.HasOne(d => d.Generation).WithMany(p => p.Parts)
-                .HasForeignKey(d => d.GenerationId)
-                .HasConstraintName("parts_generation_id_fkey");
-
-            entity.HasOne(d => d.Model).WithMany(p => p.Parts)
-                .HasForeignKey(d => d.ModelId)
-                .HasConstraintName("parts_model_id_fkey");
         });
 
         modelBuilder.Entity<User>(entity =>
