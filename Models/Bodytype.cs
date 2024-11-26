@@ -11,5 +11,5 @@ public partial class BodyType
     public string Name { get; set; } = null!;
 
     [JsonIgnore]
-    public virtual ICollection<BodyTypesCar> BodyTypesCars { get; set; } = new List<BodyTypesCar>();
+    public virtual ICollection<BodytypesCar> BodytypesCars { get; set; } = new List<BodytypesCar>();
 }

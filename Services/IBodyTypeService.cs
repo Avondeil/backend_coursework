@@ -1,6 +1,5 @@
 ﻿using api_details.Data;
 using api_details.DataTransfer;
-using api_details.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace api_details.Services
@@ -21,14 +20,12 @@ namespace api_details.Services
 
         public async Task<List<BodyTypesCarResponse>> GetBodyTypesByGenerationIdAsync(int generationId)
         {
-            var bodyTypes = await _context.BodyTypesCars
+            var bodyTypes = await _context.BodytypesCars
             .Where(bt => bt.GenerationId == generationId)
             .Include(bt => bt.BodyType) 
             .Select(bt => new BodyTypesCarResponse
             {
                Bodytypeid = bt.Bodytypeid,
-               BrandId = bt.BrandId,
-               ModelId = bt.ModelId,
                GenerationId = bt.GenerationId,
                BodyTypeName = bt.BodyType.Name
             }).ToListAsync();

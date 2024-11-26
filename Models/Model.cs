@@ -13,9 +13,6 @@ public partial class Model
     public string Name { get; set; } = null!;
 
     [JsonIgnore]
-    public virtual ICollection<BodyTypesCar> BodyTypesCars { get; set; } = new List<BodyTypesCar>();
-
-    [JsonIgnore]
     public virtual Brand Brand { get; set; } = null!;
 
     [JsonIgnore]

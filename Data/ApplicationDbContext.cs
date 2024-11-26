@@ -18,7 +18,7 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<BodyType> BodyTypes { get; set; }
 
-    public virtual DbSet<BodyTypesCar> BodyTypesCars { get; set; }
+    public virtual DbSet<BodytypesCar> BodytypesCars { get; set; }
 
     public virtual DbSet<Brand> Brands { get; set; }
 
@@ -54,7 +54,7 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("name");
         });
 
-        modelBuilder.Entity<BodyTypesCar>(entity =>
+        modelBuilder.Entity<BodytypesCar>(entity =>
         {
             entity.HasKey(e => e.Bodytypeid).HasName("bodytypes_pkey");
 
@@ -64,25 +64,15 @@ public partial class ApplicationDbContext : DbContext
                 .HasDefaultValueSql("nextval('bodytypes_bodytypeid_seq'::regclass)")
                 .HasColumnName("bodytypeid");
             entity.Property(e => e.BodyTypeId).HasColumnName("body_type_id");
-            entity.Property(e => e.BrandId).HasColumnName("brand_id");
             entity.Property(e => e.GenerationId).HasColumnName("generation_id");
-            entity.Property(e => e.ModelId).HasColumnName("model_id");
 
-            entity.HasOne(d => d.BodyType).WithMany(p => p.BodyTypesCars)
+            entity.HasOne(d => d.BodyType).WithMany(p => p.BodytypesCars)
                 .HasForeignKey(d => d.BodyTypeId)
                 .HasConstraintName("bodytypes_body_type_id_fkey");
 
-            entity.HasOne(d => d.Brand).WithMany(p => p.BodyTypesCars)
-                .HasForeignKey(d => d.BrandId)
-                .HasConstraintName("bodytypes_brand_id_fkey");
-
-            entity.HasOne(d => d.Generation).WithMany(p => p.BodyTypesCars)
+            entity.HasOne(d => d.Generation).WithMany(p => p.BodytypesCars)
                 .HasForeignKey(d => d.GenerationId)
                 .HasConstraintName("bodytypes_generation_id_fkey");
-
-            entity.HasOne(d => d.Model).WithMany(p => p.BodyTypesCars)
-                .HasForeignKey(d => d.ModelId)
-                .HasConstraintName("bodytypes_model_id_fkey");
         });
 
         modelBuilder.Entity<Brand>(entity =>
