@@ -25,6 +25,9 @@ public partial class Part
 
     public string? ImageUrl { get; set; }
 
+    public virtual Brand? Brand { get; set; }
+    public virtual Model? Model { get; set; }
+
     public virtual AutoboxParameter? AutoboxParameter { get; set; }
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
