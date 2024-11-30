@@ -15,17 +15,25 @@ public partial class Part
 
     public int? StockQuantity { get; set; }
 
-    public int? ModelYear { get; set; }
-
-    public string? BodyType { get; set; }
-
     public int? BrandId { get; set; }
 
     public int? ModelId { get; set; }
 
     public int? GenerationId { get; set; }
 
+    public int? ProductTypeId { get; set; }
+
+    public string? ImageUrl { get; set; }
+
+    public virtual AutoboxParameter? AutoboxParameter { get; set; }
+
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
+    public virtual ProductType? ProductType { get; set; }
+
+    public virtual RoofRackParameter? RoofRackParameter { get; set; }
+
+    public virtual SparePartsParameter? SparePartsParameter { get; set; }
 
     public virtual ICollection<UserHistory> UserHistories { get; set; } = new List<UserHistory>();
 }
