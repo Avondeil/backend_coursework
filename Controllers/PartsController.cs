@@ -14,36 +14,48 @@ namespace api_details.Controllers
             _partService = partService;
         }
 
+        
         [HttpGet("ByCategory/{category}")]
         public async Task<IActionResult> GetPartsByCategory(
             string category,
             [FromQuery] string? countryOfOrigin,
             [FromQuery] string? color,
-            [FromQuery] string? size,
-            [FromQuery] int? weight,
-            [FromQuery] int? volume,
+            [FromQuery] string? dimensionsMm,
+            [FromQuery] int? lengthCm,
+            [FromQuery] int? loadKg,
+            [FromQuery] int? volumeL,
             [FromQuery] string? material,
             [FromQuery] string? openingSystem,
-            [FromQuery] string? crossBarShape,
-            [FromQuery] string? installationType
+            [FromQuery] string? crossbarShape,
+            [FromQuery] string? mountingType
         )
         {
+            // Проверка категории
+            var allowedCategories = new[] { "autoboxes", "roof_racks", "parts_accessories" };
+            if (!allowedCategories.Contains(category.ToLower()))
+            {
+                return BadRequest(new { message = $"Категория '{category}' недопустима. Допустимые значения: {string.Join(", ", allowedCategories)}." });
+            }
+
+            // Вызов сервиса для получения деталей
             var parts = await _partService.GetPartsByCategoryAndFilters(
                 category,
                 countryOfOrigin,
                 color,
-                size,
-                weight,
-                volume,
+                dimensionsMm,
+                lengthCm,
+                loadKg,
+                volumeL,
                 material,
                 openingSystem,
-                crossBarShape,
-                installationType
+                crossbarShape,
+                mountingType
             );
 
+            // Проверка наличия деталей
             if (parts == null || !parts.Any())
             {
-                return NotFound(new { message = "Детали для указанной категории не найдены." });
+                return NotFound(new { message = "Детали, соответствующие указанным параметрам, не найдены." });
             }
 
             return Ok(parts);

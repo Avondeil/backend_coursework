@@ -10,13 +10,14 @@ namespace api_details.Services
             string category,
             string? countryOfOrigin,
             string? color,
-            string? size,
-            int? weight,
-            int? volume,
+            string? dimensionsMm,
+            int? lengthCm,
+            int? loadKg,
+            int? volumeL,
             string? material,
             string? openingSystem,
-            string? crossBarShape,
-            string? installationType
+            string? crossbarShape,
+            string? mountingType
         );
     }
 
@@ -33,13 +34,14 @@ namespace api_details.Services
             string category,
             string? countryOfOrigin,
             string? color,
-            string? size,
-            int? weight,
-            int? volume,
+            string? dimensionsMm,
+            int? lengthCm,
+            int? loadKg,
+            int? volumeL,
             string? material,
             string? openingSystem,
-            string? crossBarShape,
-            string? installationType
+            string? crossbarShape,
+            string? mountingType
         )
         {
             IQueryable<Part> query = _context.Parts.Include(p => p.AutoboxParameter)
@@ -87,31 +89,32 @@ namespace api_details.Services
                                          p.SparePartsParameter.Color == color);
             }
 
-            // Фильтрация по Размеру
-            if (!string.IsNullOrEmpty(size))
+
+            // Фильтрация по размерам
+            if (!string.IsNullOrEmpty(dimensionsMm))
             {
-                switch (category.ToLower())
-                {
-                    case "autoboxes":
-                        query = query.Where(p => p.AutoboxParameter.DimensionsMm == size);
-                        break;
-                    case "roof_racks":
-                        query = query.Where(p => p.RoofRackParameter.LengthCm.ToString() == size);
-                        break;
-                }
+                query = query.Where(p => p.AutoboxParameter.DimensionsMm == dimensionsMm);
             }
 
-            // Фильтрация по Весу
-            if (weight.HasValue)
+            // Фильтрация по длине (для багажников)
+            if (lengthCm.HasValue)
             {
-                query = query.Where(p => p.AutoboxParameter.LoadKg == weight ||
-                                         p.RoofRackParameter.LoadKg == weight);
+                query = query.Where(p => p.RoofRackParameter.LengthCm == lengthCm);
+            }
+
+
+            // Фильтрация по Весу
+            if (loadKg.HasValue)
+            {
+                query = query.Where(p => p.AutoboxParameter.LoadKg == loadKg ||
+                                         p.RoofRackParameter.LoadKg == loadKg);
             }
 
             // Фильтрация по Объему
-            if (volume.HasValue)
+            if (volumeL.HasValue)
             {
-                query = query.Where(p => p.AutoboxParameter.VolumeL == volume);
+                query = query.Where(p => p.AutoboxParameter.VolumeL == volumeL);
+
             }
 
             // Фильтрация по Материалу
@@ -127,15 +130,15 @@ namespace api_details.Services
             }
 
             // Фильтрация по Форме поперечин
-            if (!string.IsNullOrEmpty(crossBarShape))
+            if (!string.IsNullOrEmpty(crossbarShape))
             {
-                query = query.Where(p => p.RoofRackParameter.CrossbarShape == crossBarShape);
+                query = query.Where(p => p.RoofRackParameter.CrossbarShape == crossbarShape);
             }
 
             // Фильтрация по Типу установки
-            if (!string.IsNullOrEmpty(installationType))
+            if (!string.IsNullOrEmpty(mountingType))
             {
-                query = query.Where(p => p.RoofRackParameter.MountingType == installationType);
+                query = query.Where(p => p.RoofRackParameter.MountingType == mountingType);
             }
 
             return await query.ToListAsync();

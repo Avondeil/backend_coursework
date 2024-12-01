@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\kiril\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\controllers\\partscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:controllers\\partscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\kiril\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\services\\ipartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:services\\ipartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\kiril\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\models\\roofrackparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:models\\roofrackparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\kiril\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\models\\sparepartsparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,16 +23,8 @@
       "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:models\\autoboxparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\kiril\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\models\\roofrackparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:models\\roofrackparameter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\kiril\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\models\\part.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:models\\part.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\kiril\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\controllers\\partscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:controllers\\partscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\kiril\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\controllers\\sparepartsparameterscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -123,19 +123,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IPartService.cs",
-              "DocumentMoniker": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Services\\IPartService.cs",
-              "RelativeDocumentMoniker": "Services\\IPartService.cs",
-              "ToolTip": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Services\\IPartService.cs",
-              "RelativeToolTip": "Services\\IPartService.cs",
-              "ViewState": "AQIAAGUAAAAAAAAAAAAYwHcAAABTAAAA",
+              "Title": "PartsController.cs",
+              "DocumentMoniker": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Controllers\\PartsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PartsController.cs",
+              "ToolTip": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Controllers\\PartsController.cs",
+              "RelativeToolTip": "Controllers\\PartsController.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAxwCIAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T20:34:18.294Z",
+              "WhenOpened": "2024-12-01T16:55:58.554Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "IPartService.cs",
+              "DocumentMoniker": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Services\\IPartService.cs",
+              "RelativeDocumentMoniker": "Services\\IPartService.cs",
+              "ToolTip": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Services\\IPartService.cs",
+              "RelativeToolTip": "Services\\IPartService.cs",
+              "ViewState": "AQIAAGQAAAAAAAAAAAAgwJMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T16:51:28.096Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "SparePartsParameter.cs",
               "DocumentMoniker": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Models\\SparePartsParameter.cs",
               "RelativeDocumentMoniker": "Models\\SparePartsParameter.cs",
@@ -143,21 +155,19 @@
               "RelativeToolTip": "Models\\SparePartsParameter.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T20:34:04.464Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T20:34:04.464Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "RoofRackParameter.cs",
               "DocumentMoniker": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Models\\RoofRackParameter.cs",
               "RelativeDocumentMoniker": "Models\\RoofRackParameter.cs",
               "ToolTip": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Models\\RoofRackParameter.cs",
               "RelativeToolTip": "Models\\RoofRackParameter.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T20:33:56.673Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T20:33:56.673Z"
             },
             {
               "$type": "Document",
@@ -181,8 +191,7 @@
               "RelativeToolTip": "Controllers\\SparePartsParametersController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T16:18:19.828Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T16:18:19.828Z"
             },
             {
               "$type": "Document",
@@ -194,21 +203,7 @@
               "RelativeToolTip": "Controllers\\RoofRackParametersController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T16:17:58.888Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PartsController.cs",
-              "DocumentMoniker": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Controllers\\PartsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PartsController.cs",
-              "ToolTip": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Controllers\\PartsController.cs",
-              "RelativeToolTip": "Controllers\\PartsController.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAuwDQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T16:15:45.174Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T16:17:58.888Z"
             },
             {
               "$type": "Document",
@@ -220,8 +215,7 @@
               "RelativeToolTip": "Controllers\\AutoboxParametersController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T16:13:32.274Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T16:13:32.274Z"
             },
             {
               "$type": "Document",
@@ -249,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Part.cs",
               "DocumentMoniker": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Models\\Part.cs",
               "RelativeDocumentMoniker": "Models\\Part.cs",
@@ -257,8 +251,7 @@
               "RelativeToolTip": "Models\\Part.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAUwC4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T12:31:28.781Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T12:31:28.781Z"
             },
             {
               "$type": "Document",
@@ -299,18 +292,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "BodyType.cs",
-              "DocumentMoniker": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Models\\BodyType.cs",
-              "RelativeDocumentMoniker": "Models\\BodyType.cs",
-              "ToolTip": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Models\\BodyType.cs",
-              "RelativeToolTip": "Models\\BodyType.cs",
+              "Title": "Bodytype.cs",
+              "DocumentMoniker": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Models\\Bodytype.cs",
+              "RelativeDocumentMoniker": "Models\\Bodytype.cs",
+              "ToolTip": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Models\\Bodytype.cs",
+              "RelativeToolTip": "Models\\Bodytype.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-30T08:09:25.155Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "AutoboxParameter.cs",
               "DocumentMoniker": "C:\\Users\\kiril\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\kurs\\api-details\\Models\\AutoboxParameter.cs",
               "RelativeDocumentMoniker": "Models\\AutoboxParameter.cs",
@@ -318,8 +311,7 @@
               "RelativeToolTip": "Models\\AutoboxParameter.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T08:09:22.96Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T08:09:22.96Z"
             },
             {
               "$type": "Document",
