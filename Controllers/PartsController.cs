@@ -14,20 +14,38 @@ namespace api_details.Controllers
             _partService = partService;
         }
 
-        // Эндпоинт для получения деталей по категории (autoboxes, roofracks, spareparts)
         [HttpGet("ByCategory/{category}")]
-        public async Task<IActionResult> GetPartsByCategory(string category)
+        public async Task<IActionResult> GetPartsByCategory(
+            string category,
+            [FromQuery] string? countryOfOrigin,
+            [FromQuery] string? color,
+            [FromQuery] string? size,
+            [FromQuery] int? weight,
+            [FromQuery] int? volume,
+            [FromQuery] string? material,
+            [FromQuery] string? openingSystem,
+            [FromQuery] string? crossBarShape,
+            [FromQuery] string? installationType
+        )
         {
-            // Получаем детали по категории
-            var parts = await _partService.GetPartsByCategory(category);
+            var parts = await _partService.GetPartsByCategoryAndFilters(
+                category,
+                countryOfOrigin,
+                color,
+                size,
+                weight,
+                volume,
+                material,
+                openingSystem,
+                crossBarShape,
+                installationType
+            );
 
-            // Если детали не найдены, возвращаем ошибку
             if (parts == null || !parts.Any())
             {
                 return NotFound(new { message = "Детали для указанной категории не найдены." });
             }
 
-            // Возвращаем найденные детали
             return Ok(parts);
         }
     }
