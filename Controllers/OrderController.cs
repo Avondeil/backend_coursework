@@ -48,9 +48,24 @@ namespace api_details.Controllers
                 _context.Orders.Add(order);
                 _context.SaveChanges();
 
-                // Создаем элементы заказа
+                // Обрабатываем элементы заказа
                 foreach (var item in orderRequest.OrderItems)
                 {
+                    var part = _context.Parts.FirstOrDefault(p => p.PartId == item.PartId);
+                    if (part == null)
+                    {
+                        return NotFound($"Товар с ID {item.PartId} не найден.");
+                    }
+
+                    if (part.StockQuantity < item.Quantity)
+                    {
+                        return BadRequest($"Недостаточное количество товара '{part.Name}' на складе. Доступно: {part.StockQuantity}");
+                    }
+
+                    // Уменьшаем количество товара на складе
+                    part.StockQuantity -= item.Quantity;
+
+                    // Создаем элемент заказа
                     var orderItem = new OrderItem
                     {
                         OrderId = order.OrderId,
