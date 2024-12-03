@@ -19,6 +19,8 @@ namespace api_details.Services
             string? crossbarShape,
             string? mountingType
         );
+
+        Task<Part> GetPartById(int partId); // Для получения детали по id
     }
 
     public class PartService : IPartService
@@ -28,6 +30,17 @@ namespace api_details.Services
         public PartService(ApplicationDbContext context)
         {
             _context = context;
+        }
+        public async Task<Part> GetPartById(int partId)
+        {
+            // Поиск детали по partId
+            var part = await _context.Parts
+                .Include(p => p.AutoboxParameter)
+                .Include(p => p.RoofRackParameter)
+                .Include(p => p.SparePartsParameter)
+                .FirstOrDefaultAsync(p => p.PartId == partId);
+
+            return part;
         }
 
         public async Task<IEnumerable<Part>> GetPartsByCategoryAndFilters(

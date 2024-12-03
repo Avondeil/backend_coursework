@@ -16,11 +16,6 @@ public partial class Part
 
     public int? StockQuantity { get; set; }
 
-    public int? BrandId { get; set; }
-
-    public int? ModelId { get; set; }
-
-    public int? GenerationId { get; set; }
 
     public int? ProductTypeId { get; set; }
 

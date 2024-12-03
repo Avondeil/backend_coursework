@@ -14,7 +14,21 @@ namespace api_details.Controllers
             _partService = partService;
         }
 
-        
+        [HttpGet("{partId}")]
+        public async Task<IActionResult> GetPartById(int partId)
+        {
+            // Вызов сервиса для получения детали по partId
+            var part = await _partService.GetPartById(partId);
+
+            // Проверка наличия детали
+            if (part == null)
+            {
+                return NotFound(new { message = "Запчасть с указанным id не найдена." });
+            }
+
+            return Ok(part);
+        }
+
         [HttpGet("ByCategory/{category}")]
         public async Task<IActionResult> GetPartsByCategory(
             string category,

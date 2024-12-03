@@ -209,13 +209,10 @@ public partial class ApplicationDbContext : DbContext
             entity.ToTable("parts");
 
             entity.Property(e => e.PartId).HasColumnName("part_id");
-            entity.Property(e => e.BrandId).HasColumnName("brand_id");
             entity.Property(e => e.Description).HasColumnName("description");
-            entity.Property(e => e.GenerationId).HasColumnName("generation_id");
             entity.Property(e => e.ImageUrl)
                 .HasMaxLength(255)
                 .HasColumnName("imageURL");
-            entity.Property(e => e.ModelId).HasColumnName("model_id");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name");
