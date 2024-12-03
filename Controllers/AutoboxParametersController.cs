@@ -1,5 +1,4 @@
 ﻿using api_details.Data;
-using api_details.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

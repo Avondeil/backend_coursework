@@ -14,7 +14,8 @@ public partial class Model
 
     [JsonIgnore]
     public virtual Brand Brand { get; set; } = null!;
-
     [JsonIgnore]
     public virtual ICollection<Generation> Generations { get; set; } = new List<Generation>();
+    [JsonIgnore]
+    public virtual ICollection<PartsAuto> PartsAutos { get; set; } = new List<PartsAuto>();
 }

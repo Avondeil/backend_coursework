@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace api_details.Models;
 
@@ -17,7 +18,8 @@ public partial class User
 
     public DateTime? CreatedAt { get; set; }
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    public bool? StatusAdmin { get; set; }
 
-    public virtual ICollection<UserHistory> UserHistories { get; set; } = new List<UserHistory>();
+    [JsonIgnore]
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

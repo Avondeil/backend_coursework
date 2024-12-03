@@ -17,4 +17,7 @@ public partial class BodytypesCar
 
     [JsonIgnore]
     public virtual Generation Generation { get; set; } = null!;
+
+    [JsonIgnore]
+    public virtual ICollection<PartsAuto> PartsAutos { get; set; } = new List<PartsAuto>();
 }

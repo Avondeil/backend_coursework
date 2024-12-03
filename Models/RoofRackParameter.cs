@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace api_details.Models;
 
@@ -21,5 +22,6 @@ public partial class RoofRackParameter
 
     public string? Color { get; set; }
 
+    [JsonIgnore]
     public virtual Part Part { get; set; } = null!;
 }

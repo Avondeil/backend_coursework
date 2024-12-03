@@ -17,4 +17,7 @@ public partial class Generation
 
     [JsonIgnore]
     public virtual Model Model { get; set; } = null!;
+
+    [JsonIgnore]
+    public virtual ICollection<PartsAuto> PartsAutos { get; set; } = new List<PartsAuto>();
 }

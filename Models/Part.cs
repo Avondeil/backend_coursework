@@ -16,26 +16,20 @@ public partial class Part
 
     public int? StockQuantity { get; set; }
 
-
     public int? ProductTypeId { get; set; }
 
     public string? ImageUrl { get; set; }
 
     [JsonIgnore]
     public virtual AutoboxParameter? AutoboxParameter { get; set; }
-
     [JsonIgnore]
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-
+    [JsonIgnore]
+    public virtual ICollection<PartsAuto> PartsAutos { get; set; } = new List<PartsAuto>();
     [JsonIgnore]
     public virtual ProductType? ProductType { get; set; }
-
     [JsonIgnore]
     public virtual RoofRackParameter? RoofRackParameter { get; set; }
-
     [JsonIgnore]
     public virtual SparePartsParameter? SparePartsParameter { get; set; }
-
-    [JsonIgnore]
-    public virtual ICollection<UserHistory> UserHistories { get; set; } = new List<UserHistory>();
 }

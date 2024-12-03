@@ -34,6 +34,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<Part> Parts { get; set; }
 
+    public virtual DbSet<PartsAuto> PartsAutos { get; set; }
+
     public virtual DbSet<ProductType> ProductTypes { get; set; }
 
     public virtual DbSet<RoofRackParameter> RoofRackParameters { get; set; }
@@ -41,8 +43,6 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<SparePartsParameter> SparePartsParameters { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
-
-    public virtual DbSet<UserHistory> UserHistories { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -165,6 +165,9 @@ public partial class ApplicationDbContext : DbContext
             entity.ToTable("orders");
 
             entity.Property(e => e.OrderId).HasColumnName("order_id");
+            entity.Property(e => e.DeliveryAddress)
+                .HasMaxLength(50)
+                .HasColumnName("delivery_address");
             entity.Property(e => e.OrderDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
@@ -228,6 +231,39 @@ public partial class ApplicationDbContext : DbContext
                 .HasForeignKey(d => d.ProductTypeId)
                 .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("parts_product_type_id_fkey");
+        });
+
+        modelBuilder.Entity<PartsAuto>(entity =>
+        {
+            entity.HasKey(e => new { e.PartId, e.BrandId, e.ModelId, e.GenerationId, e.Bodytypeid }).HasName("parts_auto_pkey");
+
+            entity.ToTable("parts_auto");
+
+            entity.Property(e => e.PartId).HasColumnName("part_id");
+            entity.Property(e => e.BrandId).HasColumnName("brand_id");
+            entity.Property(e => e.ModelId).HasColumnName("model_id");
+            entity.Property(e => e.GenerationId).HasColumnName("generation_id");
+            entity.Property(e => e.Bodytypeid).HasColumnName("bodytypeid");
+
+            entity.HasOne(d => d.Bodytype).WithMany(p => p.PartsAutos)
+                .HasForeignKey(d => d.Bodytypeid)
+                .HasConstraintName("parts_auto_bodytypeid_fkey");
+
+            entity.HasOne(d => d.Brand).WithMany(p => p.PartsAutos)
+                .HasForeignKey(d => d.BrandId)
+                .HasConstraintName("parts_auto_brand_id_fkey");
+
+            entity.HasOne(d => d.Generation).WithMany(p => p.PartsAutos)
+                .HasForeignKey(d => d.GenerationId)
+                .HasConstraintName("parts_auto_generation_id_fkey");
+
+            entity.HasOne(d => d.Model).WithMany(p => p.PartsAutos)
+                .HasForeignKey(d => d.ModelId)
+                .HasConstraintName("parts_auto_model_id_fkey");
+
+            entity.HasOne(d => d.Part).WithMany(p => p.PartsAutos)
+                .HasForeignKey(d => d.PartId)
+                .HasConstraintName("parts_auto_part_id_fkey");
         });
 
         modelBuilder.Entity<ProductType>(entity =>
@@ -320,29 +356,9 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Phone)
                 .HasMaxLength(20)
                 .HasColumnName("phone");
-        });
-
-        modelBuilder.Entity<UserHistory>(entity =>
-        {
-            entity.HasKey(e => e.HistoryId).HasName("user_history_pkey");
-
-            entity.ToTable("user_history");
-
-            entity.Property(e => e.HistoryId).HasColumnName("history_id");
-            entity.Property(e => e.PartId).HasColumnName("part_id");
-            entity.Property(e => e.PurchaseDate)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("purchase_date");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-
-            entity.HasOne(d => d.Part).WithMany(p => p.UserHistories)
-                .HasForeignKey(d => d.PartId)
-                .HasConstraintName("user_history_part_id_fkey");
-
-            entity.HasOne(d => d.User).WithMany(p => p.UserHistories)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("user_history_user_id_fkey");
+            entity.Property(e => e.StatusAdmin)
+                .HasDefaultValue(false)
+                .HasColumnName("status_admin");
         });
 
         OnModelCreatingPartial(modelBuilder);
