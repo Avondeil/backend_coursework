@@ -31,6 +31,7 @@ namespace api_details.Services
         {
             _context = context;
         }
+
         public async Task<Part> GetPartById(int partId)
         {
             // Поиск детали по partId
@@ -57,103 +58,103 @@ namespace api_details.Services
             string? mountingType
         )
         {
-            IQueryable<Part> query = _context.Parts.Include(p => p.AutoboxParameter)
-                                                   .Include(p => p.RoofRackParameter)
-                                                   .Include(p => p.SparePartsParameter);
+            // Создаём базовый запрос
+            IQueryable<Part> query = _context.Parts
+                .Include(p => p.AutoboxParameter)
+                .Include(p => p.RoofRackParameter)
+                .Include(p => p.SparePartsParameter);
 
-            // Фильтруем по категории
-            switch (category.ToLower())
-            {
-                case "autoboxes":
-                    query = query.Where(p => p.AutoboxParameter != null);
-                    break;
-                case "roof_racks":
-                    query = query.Where(p => p.RoofRackParameter != null);
-                    break;
-                case "parts_accessories":
-                    query = query.Where(p => p.SparePartsParameter != null);
-                    break;
-                default:
-                    return Enumerable.Empty<Part>();
-            }
-
-            // Фильтрация по Стране происхождения
-            if (!string.IsNullOrEmpty(countryOfOrigin))
+            // Проверка категории
+            if (category.ToLower() != "all")
             {
                 switch (category.ToLower())
                 {
                     case "autoboxes":
-                        query = query.Where(p => p.AutoboxParameter.CountryOfOrigin == countryOfOrigin);
+                        query = query.Where(p => p.AutoboxParameter != null);
                         break;
                     case "roof_racks":
-                        query = query.Where(p => p.RoofRackParameter.CountryOfOrigin == countryOfOrigin);
+                        query = query.Where(p => p.RoofRackParameter != null);
                         break;
                     case "parts_accessories":
-                        query = query.Where(p => p.SparePartsParameter.CountryOfOrigin == countryOfOrigin);
+                        query = query.Where(p => p.SparePartsParameter != null);
                         break;
+                    default:
+                        return Enumerable.Empty<Part>();
                 }
             }
 
-            // Фильтрация по Цвету
-            if (!string.IsNullOrEmpty(color))
+            // Фильтрация по стране происхождения
+            if (!string.IsNullOrEmpty(countryOfOrigin))
             {
-                query = query.Where(p => p.AutoboxParameter.Color == color ||
-                                         p.RoofRackParameter.Color == color ||
-                                         p.SparePartsParameter.Color == color);
+                query = query.Where(p =>
+                    (p.AutoboxParameter != null && p.AutoboxParameter.CountryOfOrigin == countryOfOrigin) ||
+                    (p.RoofRackParameter != null && p.RoofRackParameter.CountryOfOrigin == countryOfOrigin) ||
+                    (p.SparePartsParameter != null && p.SparePartsParameter.CountryOfOrigin == countryOfOrigin)
+                );
             }
 
+            // Фильтрация по цвету
+            if (!string.IsNullOrEmpty(color))
+            {
+                query = query.Where(p =>
+                    (p.AutoboxParameter != null && p.AutoboxParameter.Color == color) ||
+                    (p.RoofRackParameter != null && p.RoofRackParameter.Color == color) ||
+                    (p.SparePartsParameter != null && p.SparePartsParameter.Color == color)
+                );
+            }
 
             // Фильтрация по размерам
             if (!string.IsNullOrEmpty(dimensionsMm))
             {
-                query = query.Where(p => p.AutoboxParameter.DimensionsMm == dimensionsMm);
+                query = query.Where(p => p.AutoboxParameter != null && p.AutoboxParameter.DimensionsMm == dimensionsMm);
             }
 
             // Фильтрация по длине (для багажников)
             if (lengthCm.HasValue)
             {
-                query = query.Where(p => p.RoofRackParameter.LengthCm == lengthCm);
+                query = query.Where(p => p.RoofRackParameter != null && p.RoofRackParameter.LengthCm == lengthCm);
             }
 
-
-            // Фильтрация по Весу
+            // Фильтрация по весу
             if (loadKg.HasValue)
             {
-                query = query.Where(p => p.AutoboxParameter.LoadKg == loadKg ||
-                                         p.RoofRackParameter.LoadKg == loadKg);
+                query = query.Where(p =>
+                    (p.AutoboxParameter != null && p.AutoboxParameter.LoadKg == loadKg) ||
+                    (p.RoofRackParameter != null && p.RoofRackParameter.LoadKg == loadKg)
+                );
             }
 
-            // Фильтрация по Объему
+            // Фильтрация по объёму
             if (volumeL.HasValue)
             {
-                query = query.Where(p => p.AutoboxParameter.VolumeL == volumeL);
-
+                query = query.Where(p => p.AutoboxParameter != null && p.AutoboxParameter.VolumeL == volumeL);
             }
 
-            // Фильтрация по Материалу
+            // Фильтрация по материалу
             if (!string.IsNullOrEmpty(material))
             {
-                query = query.Where(p => p.RoofRackParameter.Material == material);
+                query = query.Where(p => p.RoofRackParameter != null && p.RoofRackParameter.Material == material);
             }
 
-            // Фильтрация по Системе открывания
+            // Фильтрация по системе открывания
             if (!string.IsNullOrEmpty(openingSystem))
             {
-                query = query.Where(p => p.AutoboxParameter.OpeningSystem == openingSystem);
+                query = query.Where(p => p.AutoboxParameter != null && p.AutoboxParameter.OpeningSystem == openingSystem);
             }
 
-            // Фильтрация по Форме поперечин
+            // Фильтрация по форме поперечин
             if (!string.IsNullOrEmpty(crossbarShape))
             {
-                query = query.Where(p => p.RoofRackParameter.CrossbarShape == crossbarShape);
+                query = query.Where(p => p.RoofRackParameter != null && p.RoofRackParameter.CrossbarShape == crossbarShape);
             }
 
-            // Фильтрация по Типу установки
+            // Фильтрация по типу установки
             if (!string.IsNullOrEmpty(mountingType))
             {
-                query = query.Where(p => p.RoofRackParameter.MountingType == mountingType);
+                query = query.Where(p => p.RoofRackParameter != null && p.RoofRackParameter.MountingType == mountingType);
             }
 
+            // Выполняем запрос и возвращаем результат
             return await query.ToListAsync();
         }
     }

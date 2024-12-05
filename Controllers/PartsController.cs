@@ -17,10 +17,8 @@ namespace api_details.Controllers
         [HttpGet("{partId}")]
         public async Task<IActionResult> GetPartById(int partId)
         {
-            // Вызов сервиса для получения детали по partId
             var part = await _partService.GetPartById(partId);
 
-            // Проверка наличия детали
             if (part == null)
             {
                 return NotFound(new { message = "Запчасть с указанным id не найдена." });
@@ -44,14 +42,14 @@ namespace api_details.Controllers
             [FromQuery] string? mountingType
         )
         {
-            // Проверка категории
-            var allowedCategories = new[] { "autoboxes", "roof_racks", "parts_accessories" };
+            // Категории для вывода запчастей
+            var allowedCategories = new[] { "all", "autoboxes", "roof_racks", "parts_accessories" };
+
             if (!allowedCategories.Contains(category.ToLower()))
             {
                 return BadRequest(new { message = $"Категория '{category}' недопустима. Допустимые значения: {string.Join(", ", allowedCategories)}." });
             }
 
-            // Вызов сервиса для получения деталей
             var parts = await _partService.GetPartsByCategoryAndFilters(
                 category,
                 countryOfOrigin,
@@ -66,7 +64,6 @@ namespace api_details.Controllers
                 mountingType
             );
 
-            // Проверка наличия деталей
             if (parts == null || !parts.Any())
             {
                 return NotFound(new { message = "Детали, соответствующие указанным параметрам, не найдены." });
