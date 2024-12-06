@@ -14,6 +14,7 @@ namespace api_details.Controllers
             _partService = partService;
         }
 
+        // Запрос для получения детали по ID
         [HttpGet("{partId}")]
         public async Task<IActionResult> GetPartById(int partId)
         {
@@ -27,6 +28,7 @@ namespace api_details.Controllers
             return Ok(part);
         }
 
+        // Запрос для получения деталей по категории и фильтрам
         [HttpGet("ByCategory/{category}")]
         public async Task<IActionResult> GetPartsByCategory(
             string category,
@@ -39,7 +41,11 @@ namespace api_details.Controllers
             [FromQuery] string? material,
             [FromQuery] string? openingSystem,
             [FromQuery] string? crossbarShape,
-            [FromQuery] string? mountingType
+            [FromQuery] string? mountingType,
+            [FromQuery] int? brandId,
+            [FromQuery] int? modelId,
+            [FromQuery] int? generationId,
+            [FromQuery] int? bodyTypeId
         )
         {
             // Категории для вывода запчастей
@@ -61,7 +67,11 @@ namespace api_details.Controllers
                 material,
                 openingSystem,
                 crossbarShape,
-                mountingType
+                mountingType,
+                brandId,
+                modelId,
+                generationId,
+                bodyTypeId
             );
 
             if (parts == null || !parts.Any())

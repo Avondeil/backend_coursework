@@ -24,6 +24,7 @@ namespace api_details.Controllers
             try
             {
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var statusAdmin = User.FindFirst("statusAdmin")?.Value;
 
                 if (string.IsNullOrEmpty(userId))
                 {
@@ -40,7 +41,8 @@ namespace api_details.Controllers
                 {
                     FullName = user.FullName,
                     Email = user.Email,
-                    Phone = user.Phone
+                    Phone = user.Phone,
+                    StatusAdmin = user.StatusAdmin
                 });
             }
             catch (Exception ex)

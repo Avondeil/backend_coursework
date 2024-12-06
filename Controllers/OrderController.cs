@@ -1,9 +1,11 @@
 ﻿using api_details.Data;
 using api_details.DataTransfer;
 using api_details.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace api_details.Controllers
 {
@@ -202,20 +204,90 @@ namespace api_details.Controllers
                 return StatusCode(500, new { message = "Произошла ошибка при удалении заказа." });
             }
         }
+        // Для вывода всех активных заказов
+        [HttpGet("active-orders")]
+        [Authorize]
+        public IActionResult GetActiveOrders()
+        {
+            try
+            {
+                // Проверяем значение statusAdmin из JWT токена
+                var statusAdminClaim = User.FindFirst("statusAdmin")?.Value;
+                if (string.IsNullOrEmpty(statusAdminClaim) || !bool.TryParse(statusAdminClaim, out var isAdmin) || !isAdmin)
+                {
+                    return Unauthorized("Только администраторы могут просматривать активные заказы.");
+                }
 
-    }
+                var activeOrders = _context.Orders
+                    .Where(o => o.Status != "Доставлен" && o.Status != "Отменён")
+                    .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Part)
+                    .Select(o => new
+                    {
+                        o.OrderId,
+                        o.Status,
+                        o.DeliveryAddress,
+                        o.OrderDate,
+                        Items = o.OrderItems.Select(oi => new
+                        {
+                            oi.PartId,
+                            oi.Part.Name,
+                            oi.Part.ImageUrl,
+                            oi.Quantity,
+                            oi.Price
+                        })
+                    })
+                    .ToList();
 
-    // DTO для заказа
-    public class OrderRequest
-    {
-        public string DeliveryAddress { get; set; }
-        public List<OrderItemRequest> OrderItems { get; set; }
-    }
+                return Ok(activeOrders);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Ошибка сервера: {ex.Message}");
+            }
+        }
 
-    public class OrderItemRequest
-    {
-        public int PartId { get; set; }
-        public int Quantity { get; set; }
-        public decimal Price { get; set; }
+        // Для изменения статуса заказа
+        [HttpPut("update-status/{orderId}")]
+        [Authorize]
+        public IActionResult UpdateOrderStatus(int orderId, [FromBody] StatusUpdateRequest statusRequest)
+        {
+            try
+            {
+                // Проверяем значение statusAdmin из JWT токена
+                var statusAdminClaim = User.FindFirst("statusAdmin")?.Value;
+                if (string.IsNullOrEmpty(statusAdminClaim) || !bool.TryParse(statusAdminClaim, out var isAdmin) || !isAdmin)
+                {
+                    return Unauthorized("Только администраторы могут изменять статус заказов.");
+                }
+
+                var order = _context.Orders
+                    .Include(o => o.OrderItems)
+                    .FirstOrDefault(o => o.OrderId == orderId);
+
+                if (order == null)
+                {
+                    return NotFound("Заказ не найден.");
+                }
+
+                // Разрешаем менять статус только на активные заказы
+                if (order.Status == "Отменён" || order.Status == "Доставлен")
+                {
+                    return BadRequest("Невозможно изменить статус завершённого или отменённого заказа.");
+                }
+
+                order.Status = statusRequest.Status;
+                _context.SaveChanges();
+
+                return Ok(new { message = "Статус заказа успешно обновлён." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Ошибка сервера: {ex.Message}");
+            }
+        }
     }
 }
+
+
+  

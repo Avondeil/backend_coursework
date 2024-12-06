@@ -17,7 +17,11 @@ namespace api_details.Services
             string? material,
             string? openingSystem,
             string? crossbarShape,
-            string? mountingType
+            string? mountingType,
+            int? brandId,
+            int? modelId,
+            int? generationId,
+            int? bodyTypeId
         );
 
         Task<Part> GetPartById(int partId); // Для получения детали по id
@@ -32,18 +36,27 @@ namespace api_details.Services
             _context = context;
         }
 
+        // Метод для получения детали по ID
         public async Task<Part> GetPartById(int partId)
         {
-            // Поиск детали по partId
             var part = await _context.Parts
                 .Include(p => p.AutoboxParameter)
                 .Include(p => p.RoofRackParameter)
                 .Include(p => p.SparePartsParameter)
+                .Include(p => p.PartsAutos) // Исправление: связи с PartsAutos
+                    .ThenInclude(pa => pa.Brand)
+                .Include(p => p.PartsAutos)
+                    .ThenInclude(pa => pa.Model)
+                .Include(p => p.PartsAutos)
+                    .ThenInclude(pa => pa.Generation)
+                .Include(p => p.PartsAutos)
+                    .ThenInclude(pa => pa.Bodytype)
                 .FirstOrDefaultAsync(p => p.PartId == partId);
 
             return part;
         }
 
+        // Метод для получения деталей по категории и фильтрам
         public async Task<IEnumerable<Part>> GetPartsByCategoryAndFilters(
             string category,
             string? countryOfOrigin,
@@ -55,14 +68,26 @@ namespace api_details.Services
             string? material,
             string? openingSystem,
             string? crossbarShape,
-            string? mountingType
+            string? mountingType,
+            int? brandId,
+            int? modelId,
+            int? generationId,
+            int? bodyTypeId
         )
         {
             // Создаём базовый запрос
             IQueryable<Part> query = _context.Parts
                 .Include(p => p.AutoboxParameter)
                 .Include(p => p.RoofRackParameter)
-                .Include(p => p.SparePartsParameter);
+                .Include(p => p.SparePartsParameter)
+                .Include(p => p.PartsAutos) // Исправление: связи с PartsAutos
+                    .ThenInclude(pa => pa.Brand)
+                .Include(p => p.PartsAutos)
+                    .ThenInclude(pa => pa.Model)
+                .Include(p => p.PartsAutos)
+                    .ThenInclude(pa => pa.Generation)
+                .Include(p => p.PartsAutos)
+                    .ThenInclude(pa => pa.Bodytype);
 
             // Проверка категории
             if (category.ToLower() != "all")
@@ -154,7 +179,30 @@ namespace api_details.Services
                 query = query.Where(p => p.RoofRackParameter != null && p.RoofRackParameter.MountingType == mountingType);
             }
 
-            // Выполняем запрос и возвращаем результат
+            // Фильтрация по марке автомобиля
+            if (brandId.HasValue)
+            {
+                query = query.Where(p => p.PartsAutos.Any(pa => pa.BrandId == brandId));
+            }
+
+            // Фильтрация по модели автомобиля
+            if (modelId.HasValue)
+            {
+                query = query.Where(p => p.PartsAutos.Any(pa => pa.ModelId == modelId));
+            }
+
+            // Фильтрация по поколению автомобиля
+            if (generationId.HasValue)
+            {
+                query = query.Where(p => p.PartsAutos.Any(pa => pa.GenerationId == generationId));
+            }
+
+            // Фильтрация по типу кузова
+            if (bodyTypeId.HasValue)
+            {
+                query = query.Where(p => p.PartsAutos.Any(pa => pa.Bodytypeid == bodyTypeId));
+            }
+
             return await query.ToListAsync();
         }
     }
