@@ -83,6 +83,29 @@ namespace api_details.Controllers
             return Ok(new { token });
         }
 
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequestDto request)
+        {
+            if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.NewPassword))
+            {
+                return BadRequest(new { message = "Все поля обязательны для заполнения" });
+            }
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            if (user == null)
+            {
+                return NotFound(new { message = "Пользователь не найден" });
+            }
+
+            user.Password = HashPassword(request.NewPassword);
+
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Пароль успешно изменен" });
+        }
+
+
         private string HashPassword(string password)
         {
             using (var sha256 = SHA256.Create())

@@ -205,47 +205,47 @@ namespace api_details.Controllers
             }
         }
         // Для вывода всех активных заказов
-        [HttpGet("active-orders")]
-        [Authorize]
-        public IActionResult GetActiveOrders()
-        {
-            try
+            [HttpGet("active-orders")]
+            [Authorize]
+            public IActionResult GetActiveOrders()
             {
-                // Проверяем значение statusAdmin из JWT токена
-                var statusAdminClaim = User.FindFirst("statusAdmin")?.Value;
-                if (string.IsNullOrEmpty(statusAdminClaim) || !bool.TryParse(statusAdminClaim, out var isAdmin) || !isAdmin)
+                try
                 {
-                    return Unauthorized("Только администраторы могут просматривать активные заказы.");
-                }
-
-                var activeOrders = _context.Orders
-                    .Where(o => o.Status != "Доставлен" && o.Status != "Отменён")
-                    .Include(o => o.OrderItems)
-                    .ThenInclude(oi => oi.Part)
-                    .Select(o => new
+                    // Проверяем значение statusAdmin из JWT токена
+                    var statusAdminClaim = User.FindFirst("statusAdmin")?.Value;
+                    if (string.IsNullOrEmpty(statusAdminClaim) || !bool.TryParse(statusAdminClaim, out var isAdmin) || !isAdmin)
                     {
-                        o.OrderId,
-                        o.Status,
-                        o.DeliveryAddress,
-                        o.OrderDate,
-                        Items = o.OrderItems.Select(oi => new
-                        {
-                            oi.PartId,
-                            oi.Part.Name,
-                            oi.Part.ImageUrl,
-                            oi.Quantity,
-                            oi.Price
-                        })
-                    })
-                    .ToList();
+                        return Unauthorized("Только администраторы могут просматривать активные заказы.");
+                    }
 
-                return Ok(activeOrders);
+                    var activeOrders = _context.Orders
+                        .Where(o => o.Status != "Доставлен" && o.Status != "Отменён")
+                        .Include(o => o.OrderItems)
+                        .ThenInclude(oi => oi.Part)
+                        .Select(o => new
+                        {
+                            o.OrderId,
+                            o.Status,
+                            o.DeliveryAddress,
+                            o.OrderDate,
+                            Items = o.OrderItems.Select(oi => new
+                            {
+                                oi.PartId,
+                                oi.Part.Name,
+                                oi.Part.ImageUrl,
+                                oi.Quantity,
+                                oi.Price
+                            })
+                        })
+                        .ToList();
+
+                    return Ok(activeOrders);
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, $"Ошибка сервера: {ex.Message}");
+                }
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Ошибка сервера: {ex.Message}");
-            }
-        }
 
         // Для изменения статуса заказа
         [HttpPut("update-status/{orderId}")]
