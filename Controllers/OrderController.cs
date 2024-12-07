@@ -30,7 +30,7 @@ namespace api_details.Controllers
 
                 if (string.IsNullOrEmpty(userId))
                 {
-                    return Unauthorized("Пользователь не авторизован.");
+                    return Unauthorized("Пользователь не аутентификацирован.");
                 }
 
                 var user = _context.Users.FirstOrDefault(u => u.UserId == int.Parse(userId));
@@ -136,7 +136,7 @@ namespace api_details.Controllers
 
                 if (string.IsNullOrEmpty(userId))
                 {
-                    return Unauthorized("Пользователь не авторизован.");
+                    return Unauthorized("Пользователь не аутентификацирован.");
                 }
 
                 var order = _context.Orders
@@ -204,48 +204,58 @@ namespace api_details.Controllers
                 return StatusCode(500, new { message = "Произошла ошибка при удалении заказа." });
             }
         }
+
         // Для вывода всех активных заказов
-            [HttpGet("active-orders")]
-            [Authorize]
-            public IActionResult GetActiveOrders()
+        [HttpGet("active-orders")]
+        [Authorize]
+        public IActionResult GetActiveOrders()
+        {
+            try
             {
-                try
+                // Проверяем значение statusAdmin из JWT токена
+                var statusAdminClaim = User.FindFirst("statusAdmin")?.Value;
+                if (string.IsNullOrEmpty(statusAdminClaim) || !bool.TryParse(statusAdminClaim, out var isAdmin) || !isAdmin)
                 {
-                    // Проверяем значение statusAdmin из JWT токена
-                    var statusAdminClaim = User.FindFirst("statusAdmin")?.Value;
-                    if (string.IsNullOrEmpty(statusAdminClaim) || !bool.TryParse(statusAdminClaim, out var isAdmin) || !isAdmin)
+                    return Unauthorized("Только администраторы могут просматривать активные заказы.");
+                }
+
+                var activeOrders = _context.Orders
+                    .Where(o => o.Status != "Доставлен" && o.Status != "Отменён")
+                    .Include(o => o.OrderItems) 
+                    .ThenInclude(oi => oi.Part) 
+                    .Include(o => o.User) 
+                    .Select(o => new
                     {
-                        return Unauthorized("Только администраторы могут просматривать активные заказы.");
-                    }
-
-                    var activeOrders = _context.Orders
-                        .Where(o => o.Status != "Доставлен" && o.Status != "Отменён")
-                        .Include(o => o.OrderItems)
-                        .ThenInclude(oi => oi.Part)
-                        .Select(o => new
+                        o.OrderId,
+                        o.Status,
+                        o.DeliveryAddress,
+                        o.OrderDate,
+                        User = new UserResponseDto
                         {
-                            o.OrderId,
-                            o.Status,
-                            o.DeliveryAddress,
-                            o.OrderDate,
-                            Items = o.OrderItems.Select(oi => new
-                            {
-                                oi.PartId,
-                                oi.Part.Name,
-                                oi.Part.ImageUrl,
-                                oi.Quantity,
-                                oi.Price
-                            })
+                            UserId = o.User.UserId,
+                            FullName = o.User.FullName,
+                            Email = o.User.Email,
+                            Phone = o.User.Phone
+                        },
+                        Items = o.OrderItems.Select(oi => new
+                        {
+                            oi.PartId,
+                            oi.Part.Name,
+                            oi.Part.ImageUrl,
+                            oi.Quantity,
+                            oi.Price
                         })
-                        .ToList();
+                    })
+                    .ToList();
 
-                    return Ok(activeOrders);
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, $"Ошибка сервера: {ex.Message}");
-                }
+                return Ok(activeOrders);
             }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Ошибка сервера: {ex.Message}");
+            }
+        }
+
 
         // Для изменения статуса заказа
         [HttpPut("update-status/{orderId}")]
