@@ -30,7 +30,7 @@ namespace api_details.Controllers
 
                 if (string.IsNullOrEmpty(userId))
                 {
-                    return Unauthorized("Пользователь не аутентификацирован.");
+                    return Unauthorized("Пользователь не авторизован.");
                 }
 
                 var user = _context.Users.FirstOrDefault(u => u.UserId == int.Parse(userId));
@@ -136,7 +136,7 @@ namespace api_details.Controllers
 
                 if (string.IsNullOrEmpty(userId))
                 {
-                    return Unauthorized("Пользователь не аутентификацирован.");
+                    return Unauthorized("Пользователь не авторизован.");
                 }
 
                 var order = _context.Orders
