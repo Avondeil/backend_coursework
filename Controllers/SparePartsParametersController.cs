@@ -15,7 +15,6 @@ namespace api_details.Controllers
             _context = context;
         }
 
-        // GET: api/SparePartsParameters
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> GetSparePartsParameters()
         {
@@ -30,6 +29,27 @@ namespace api_details.Controllers
                 .ToListAsync();
 
             return Ok(sparePartsParameters);
+        }
+
+        [HttpGet("{partId}")]
+        public async Task<ActionResult<object>> GetSparePartParameterByPartId(int partId)
+        {
+            var sparePartParameter = await _context.SparePartsParameters
+                .Where(p => p.PartId == partId)
+                .Select(p => new
+                {
+                    p.PartId,
+                    p.CountryOfOrigin,
+                    p.Color
+                })
+                .FirstOrDefaultAsync();
+
+            if (sparePartParameter == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(sparePartParameter);
         }
     }
 }

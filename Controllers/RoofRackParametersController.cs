@@ -15,7 +15,6 @@ namespace api_details.Controllers
             _context = context;
         }
 
-        // GET: api/RoofRackParameters
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> GetRoofRackParameters()
         {
@@ -35,6 +34,32 @@ namespace api_details.Controllers
                 .ToListAsync();
 
             return Ok(roofRackParameters);
+        }
+
+        [HttpGet("{partId}")]
+        public async Task<ActionResult<object>> GetRoofRackParameterByPartId(int partId)
+        {
+            var roofRackParameter = await _context.RoofRackParameters
+                .Where(p => p.PartId == partId)
+                .Select(p => new
+                {
+                    p.PartId,
+                    p.LengthCm,
+                    p.Material,
+                    p.LoadKg,
+                    p.MountingType,
+                    p.CrossbarShape,
+                    p.CountryOfOrigin,
+                    p.Color
+                })
+                .FirstOrDefaultAsync();
+
+            if (roofRackParameter == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(roofRackParameter);
         }
     }
 }

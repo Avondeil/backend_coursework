@@ -15,7 +15,6 @@ namespace api_details.Controllers
             _context = context;
         }
 
-        // GET: api/AutoboxParameters
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> GetAutoboxParameters()
         {
@@ -35,5 +34,31 @@ namespace api_details.Controllers
 
             return Ok(autoboxParameters);
         }
+
+        [HttpGet("{partId}")]
+        public async Task<ActionResult<object>> GetAutoboxParameterByPartId(int partId)
+        {
+            var autoboxParameter = await _context.AutoboxParameters
+                .Where(p => p.PartId == partId)
+                .Select(p => new
+                {
+                    p.PartId,
+                    p.DimensionsMm,
+                    p.LoadKg,
+                    p.VolumeL,
+                    p.OpeningSystem,
+                    p.CountryOfOrigin,
+                    p.Color
+                })
+                .FirstOrDefaultAsync();
+
+            if (autoboxParameter == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(autoboxParameter);
+        }
+
     }
 }
