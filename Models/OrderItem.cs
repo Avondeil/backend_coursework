@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace api_details.Models;
 
@@ -15,7 +16,8 @@ public partial class OrderItem
 
     public decimal Price { get; set; }
 
+    [JsonIgnore]
     public virtual Order? Order { get; set; }
-
+    [JsonIgnore]
     public virtual Part? Part { get; set; }
 }

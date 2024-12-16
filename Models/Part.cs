@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace api_details.Models;
 
@@ -15,23 +16,20 @@ public partial class Part
 
     public int? StockQuantity { get; set; }
 
-    public int? ModelYear { get; set; }
+    public int? ProductTypeId { get; set; }
 
-    public string? BodyType { get; set; }
+    public string? ImageUrl { get; set; }
 
-    public int? BrandId { get; set; }
-
-    public int? ModelId { get; set; }
-
-    public int? GenerationId { get; set; }
-
-    public virtual Brand? Brand { get; set; }
-
-    public virtual Generation? Generation { get; set; }
-
-    public virtual Model? Model { get; set; }
-
+    [JsonIgnore]
+    public virtual AutoboxParameter? AutoboxParameter { get; set; }
+    [JsonIgnore]
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-
-    public virtual ICollection<UserHistory> UserHistories { get; set; } = new List<UserHistory>();
+    [JsonIgnore]
+    public virtual ICollection<PartsAuto> PartsAutos { get; set; } = new List<PartsAuto>();
+    [JsonIgnore]
+    public virtual ProductType? ProductType { get; set; }
+    [JsonIgnore]
+    public virtual RoofRackParameter? RoofRackParameter { get; set; }
+    [JsonIgnore]
+    public virtual SparePartsParameter? SparePartsParameter { get; set; }
 }

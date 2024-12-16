@@ -16,6 +16,12 @@ public partial class ApplicationDbContext : DbContext
     {
     }
 
+    public virtual DbSet<AutoboxParameter> AutoboxParameters { get; set; }
+
+    public virtual DbSet<BodyType> BodyTypes { get; set; }
+
+    public virtual DbSet<BodytypesCar> BodytypesCars { get; set; }
+
     public virtual DbSet<Brand> Brands { get; set; }
 
     public virtual DbSet<Generation> Generations { get; set; }
@@ -28,16 +34,84 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<Part> Parts { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<PartsAuto> PartsAutos { get; set; }
 
-    public virtual DbSet<UserHistory> UserHistories { get; set; }
+    public virtual DbSet<ProductType> ProductTypes { get; set; }
+
+    public virtual DbSet<RoofRackParameter> RoofRackParameters { get; set; }
+
+    public virtual DbSet<SparePartsParameter> SparePartsParameters { get; set; }
+
+    public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=EKBDetal_Base;Username=postgres;Password=12344321");
+        => optionsBuilder.UseNpgsql("Host=localhost;Database=EKBDetal_Base;Username=postgres;Password=12344321");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<AutoboxParameter>(entity =>
+        {
+            entity.HasKey(e => e.PartId).HasName("autobox_parameters_pkey");
+
+            entity.ToTable("autobox_parameters");
+
+            entity.Property(e => e.PartId)
+                .ValueGeneratedNever()
+                .HasColumnName("part_id");
+            entity.Property(e => e.Color)
+                .HasMaxLength(50)
+                .HasColumnName("color");
+            entity.Property(e => e.CountryOfOrigin)
+                .HasMaxLength(255)
+                .HasColumnName("country_of_origin");
+            entity.Property(e => e.DimensionsMm)
+                .HasMaxLength(255)
+                .HasColumnName("dimensions_mm");
+            entity.Property(e => e.LoadKg).HasColumnName("load_kg");
+            entity.Property(e => e.OpeningSystem)
+                .HasMaxLength(255)
+                .HasColumnName("opening_system");
+            entity.Property(e => e.VolumeL).HasColumnName("volume_l");
+
+            entity.HasOne(d => d.Part).WithOne(p => p.AutoboxParameter)
+                .HasForeignKey<AutoboxParameter>(d => d.PartId)
+                .HasConstraintName("autobox_parameters_part_id_fkey");
+        });
+
+        modelBuilder.Entity<BodyType>(entity =>
+        {
+            entity.HasKey(e => e.BodyTypeId).HasName("body_types_pkey");
+
+            entity.ToTable("body_types");
+
+            entity.Property(e => e.BodyTypeId).HasColumnName("body_type_id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(255)
+                .HasColumnName("name");
+        });
+
+        modelBuilder.Entity<BodytypesCar>(entity =>
+        {
+            entity.HasKey(e => e.Bodytypeid).HasName("bodytypes_pkey");
+
+            entity.ToTable("bodytypes_car");
+
+            entity.Property(e => e.Bodytypeid)
+                .HasDefaultValueSql("nextval('bodytypes_bodytypeid_seq'::regclass)")
+                .HasColumnName("bodytypeid");
+            entity.Property(e => e.BodyTypeId).HasColumnName("body_type_id");
+            entity.Property(e => e.GenerationId).HasColumnName("generation_id");
+
+            entity.HasOne(d => d.BodyType).WithMany(p => p.BodytypesCars)
+                .HasForeignKey(d => d.BodyTypeId)
+                .HasConstraintName("bodytypes_body_type_id_fkey");
+
+            entity.HasOne(d => d.Generation).WithMany(p => p.BodytypesCars)
+                .HasForeignKey(d => d.GenerationId)
+                .HasConstraintName("bodytypes_generation_id_fkey");
+        });
+
         modelBuilder.Entity<Brand>(entity =>
         {
             entity.HasKey(e => e.BrandId).HasName("brands_pkey");
@@ -46,7 +120,7 @@ public partial class ApplicationDbContext : DbContext
 
             entity.Property(e => e.BrandId).HasColumnName("brand_id");
             entity.Property(e => e.Name)
-                .HasMaxLength(100)
+                .HasMaxLength(255)
                 .HasColumnName("name");
         });
 
@@ -58,7 +132,9 @@ public partial class ApplicationDbContext : DbContext
 
             entity.Property(e => e.GenerationId).HasColumnName("generation_id");
             entity.Property(e => e.ModelId).HasColumnName("model_id");
-            entity.Property(e => e.Year).HasColumnName("year");
+            entity.Property(e => e.Year)
+                .HasMaxLength(255)
+                .HasColumnName("year");
 
             entity.HasOne(d => d.Model).WithMany(p => p.Generations)
                 .HasForeignKey(d => d.ModelId)
@@ -74,7 +150,7 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.ModelId).HasColumnName("model_id");
             entity.Property(e => e.BrandId).HasColumnName("brand_id");
             entity.Property(e => e.Name)
-                .HasMaxLength(100)
+                .HasMaxLength(255)
                 .HasColumnName("name");
 
             entity.HasOne(d => d.Brand).WithMany(p => p.Models)
@@ -89,6 +165,9 @@ public partial class ApplicationDbContext : DbContext
             entity.ToTable("orders");
 
             entity.Property(e => e.OrderId).HasColumnName("order_id");
+            entity.Property(e => e.DeliveryAddress)
+                .HasMaxLength(50)
+                .HasColumnName("delivery_address");
             entity.Property(e => e.OrderDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("timestamp without time zone")
@@ -133,35 +212,123 @@ public partial class ApplicationDbContext : DbContext
             entity.ToTable("parts");
 
             entity.Property(e => e.PartId).HasColumnName("part_id");
-            entity.Property(e => e.BodyType)
-                .HasMaxLength(50)
-                .HasColumnName("body_type");
-            entity.Property(e => e.BrandId).HasColumnName("brand_id");
             entity.Property(e => e.Description).HasColumnName("description");
-            entity.Property(e => e.GenerationId).HasColumnName("generation_id");
-            entity.Property(e => e.ModelId).HasColumnName("model_id");
-            entity.Property(e => e.ModelYear).HasColumnName("model_year");
+            entity.Property(e => e.ImageUrl)
+                .HasMaxLength(255)
+                .HasColumnName("imageURL");
             entity.Property(e => e.Name)
                 .HasMaxLength(255)
                 .HasColumnName("name");
             entity.Property(e => e.Price)
                 .HasPrecision(10, 2)
                 .HasColumnName("price");
+            entity.Property(e => e.ProductTypeId).HasColumnName("product_type_id");
             entity.Property(e => e.StockQuantity)
                 .HasDefaultValue(0)
                 .HasColumnName("stock_quantity");
 
-            entity.HasOne(d => d.Brand).WithMany(p => p.Parts)
+            entity.HasOne(d => d.ProductType).WithMany(p => p.Parts)
+                .HasForeignKey(d => d.ProductTypeId)
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasConstraintName("parts_product_type_id_fkey");
+        });
+
+        modelBuilder.Entity<PartsAuto>(entity =>
+        {
+            entity.HasKey(e => new { e.PartId, e.BrandId, e.ModelId, e.GenerationId, e.Bodytypeid }).HasName("parts_auto_pkey");
+
+            entity.ToTable("parts_auto");
+
+            entity.Property(e => e.PartId).HasColumnName("part_id");
+            entity.Property(e => e.BrandId).HasColumnName("brand_id");
+            entity.Property(e => e.ModelId).HasColumnName("model_id");
+            entity.Property(e => e.GenerationId).HasColumnName("generation_id");
+            entity.Property(e => e.Bodytypeid).HasColumnName("bodytypeid");
+
+            entity.HasOne(d => d.Bodytype).WithMany(p => p.PartsAutos)
+                .HasForeignKey(d => d.Bodytypeid)
+                .HasConstraintName("parts_auto_bodytypeid_fkey");
+
+            entity.HasOne(d => d.Brand).WithMany(p => p.PartsAutos)
                 .HasForeignKey(d => d.BrandId)
-                .HasConstraintName("parts_brand_id_fkey");
+                .HasConstraintName("parts_auto_brand_id_fkey");
 
-            entity.HasOne(d => d.Generation).WithMany(p => p.Parts)
+            entity.HasOne(d => d.Generation).WithMany(p => p.PartsAutos)
                 .HasForeignKey(d => d.GenerationId)
-                .HasConstraintName("parts_generation_id_fkey");
+                .HasConstraintName("parts_auto_generation_id_fkey");
 
-            entity.HasOne(d => d.Model).WithMany(p => p.Parts)
+            entity.HasOne(d => d.Model).WithMany(p => p.PartsAutos)
                 .HasForeignKey(d => d.ModelId)
-                .HasConstraintName("parts_model_id_fkey");
+                .HasConstraintName("parts_auto_model_id_fkey");
+
+            entity.HasOne(d => d.Part).WithMany(p => p.PartsAutos)
+                .HasForeignKey(d => d.PartId)
+                .HasConstraintName("parts_auto_part_id_fkey");
+        });
+
+        modelBuilder.Entity<ProductType>(entity =>
+        {
+            entity.HasKey(e => e.ProductTypeId).HasName("product_types_pkey");
+
+            entity.ToTable("product_types");
+
+            entity.Property(e => e.ProductTypeId).HasColumnName("product_type_id");
+            entity.Property(e => e.Name)
+                .HasMaxLength(255)
+                .HasColumnName("name");
+        });
+
+        modelBuilder.Entity<RoofRackParameter>(entity =>
+        {
+            entity.HasKey(e => e.PartId).HasName("roof_rack_parameters_pkey");
+
+            entity.ToTable("roof_rack_parameters");
+
+            entity.Property(e => e.PartId)
+                .ValueGeneratedNever()
+                .HasColumnName("part_id");
+            entity.Property(e => e.Color)
+                .HasMaxLength(50)
+                .HasColumnName("color");
+            entity.Property(e => e.CountryOfOrigin)
+                .HasMaxLength(255)
+                .HasColumnName("country_of_origin");
+            entity.Property(e => e.CrossbarShape)
+                .HasMaxLength(255)
+                .HasColumnName("crossbar_shape");
+            entity.Property(e => e.LengthCm).HasColumnName("length_cm");
+            entity.Property(e => e.LoadKg).HasColumnName("load_kg");
+            entity.Property(e => e.Material)
+                .HasMaxLength(255)
+                .HasColumnName("material");
+            entity.Property(e => e.MountingType)
+                .HasMaxLength(255)
+                .HasColumnName("mounting_type");
+
+            entity.HasOne(d => d.Part).WithOne(p => p.RoofRackParameter)
+                .HasForeignKey<RoofRackParameter>(d => d.PartId)
+                .HasConstraintName("roof_rack_parameters_part_id_fkey");
+        });
+
+        modelBuilder.Entity<SparePartsParameter>(entity =>
+        {
+            entity.HasKey(e => e.PartId).HasName("spare_parts_parameters_pkey");
+
+            entity.ToTable("spare_parts_parameters");
+
+            entity.Property(e => e.PartId)
+                .ValueGeneratedNever()
+                .HasColumnName("part_id");
+            entity.Property(e => e.Color)
+                .HasMaxLength(50)
+                .HasColumnName("color");
+            entity.Property(e => e.CountryOfOrigin)
+                .HasMaxLength(255)
+                .HasColumnName("country_of_origin");
+
+            entity.HasOne(d => d.Part).WithOne(p => p.SparePartsParameter)
+                .HasForeignKey<SparePartsParameter>(d => d.PartId)
+                .HasConstraintName("spare_parts_parameters_part_id_fkey");
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -189,29 +356,9 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Phone)
                 .HasMaxLength(20)
                 .HasColumnName("phone");
-        });
-
-        modelBuilder.Entity<UserHistory>(entity =>
-        {
-            entity.HasKey(e => e.HistoryId).HasName("user_history_pkey");
-
-            entity.ToTable("user_history");
-
-            entity.Property(e => e.HistoryId).HasColumnName("history_id");
-            entity.Property(e => e.PartId).HasColumnName("part_id");
-            entity.Property(e => e.PurchaseDate)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .HasColumnType("timestamp without time zone")
-                .HasColumnName("purchase_date");
-            entity.Property(e => e.UserId).HasColumnName("user_id");
-
-            entity.HasOne(d => d.Part).WithMany(p => p.UserHistories)
-                .HasForeignKey(d => d.PartId)
-                .HasConstraintName("user_history_part_id_fkey");
-
-            entity.HasOne(d => d.User).WithMany(p => p.UserHistories)
-                .HasForeignKey(d => d.UserId)
-                .HasConstraintName("user_history_user_id_fkey");
+            entity.Property(e => e.StatusAdmin)
+                .HasDefaultValue(false)
+                .HasColumnName("status_admin");
         });
 
         OnModelCreatingPartial(modelBuilder);
