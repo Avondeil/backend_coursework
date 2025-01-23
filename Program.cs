@@ -7,7 +7,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Регистрация сервисов
+// Р РµРіРёСЃС‚СЂР°С†РёСЏ СЃРµСЂРІРёСЃРѕРІ
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,18 +16,18 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:3000", "http://192.168.0.105:3000") // IP адреса для разрешения доступа
+        builder.WithOrigins("http://localhost:3000", "http://192.168.0.103:3000") // IP Р°РґСЂРµСЃР° РґР»СЏ СЂР°Р·СЂРµС€РµРЅРёСЏ РґРѕСЃС‚СѓРїР°
                .AllowAnyHeader()
                .AllowAnyMethod();
     });
 });
 
-// Подключение базы данных
+// РџРѕРґРєР»СЋС‡РµРЅРёРµ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-// Настройка аутентификации через JWT
+// РќР°СЃС‚СЂРѕР№РєР° Р°СѓС‚РµРЅС‚РёС„РёРєР°С†РёРё С‡РµСЂРµР· JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -46,12 +46,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         {
             OnAuthenticationFailed = context =>
             {
-                Console.WriteLine($"Ошибка аутентификации: {context.Exception.Message}");
+                Console.WriteLine($"РћС€РёР±РєР° Р°СѓС‚РµРЅС‚РёС„РёРєР°С†РёРё: {context.Exception.Message}");
                 return Task.CompletedTask;
             },
             OnTokenValidated = context =>
             {
-                Console.WriteLine($"Токен успешно валидирован для пользователя: {context.Principal?.Identity?.Name}");
+                Console.WriteLine($"РўРѕРєРµРЅ СѓСЃРїРµС€РЅРѕ РІР°Р»РёРґРёСЂРѕРІР°РЅ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ: {context.Principal?.Identity?.Name}");
                 return Task.CompletedTask;
             }
         };
