@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -36,6 +36,11 @@ namespace api_details.Controllers
             if (await _context.Users.AnyAsync(u => u.Email == request.Email))
             {
                 return BadRequest(new { message = "Пользователь с таким email уже существует" });
+            }
+
+            if (await _context.Users.AnyAsync(u => u.Phone == request.Phone))
+            {
+                return BadRequest(new { message = "Пользователь с таким номером телефона уже существует" });
             }
 
             var hashedPassword = HashPassword(request.Password);
