@@ -1,4 +1,7 @@
-﻿using api_details.Services;
+﻿using api_details.Authorization;
+using api_details.DataTransfer;
+using api_details.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api_details.Controllers
@@ -16,17 +19,17 @@ namespace api_details.Controllers
 
         // Запрос для получения детали по ID
         [HttpGet("{partId}")]
-        public async Task<IActionResult> GetPartById(int partId)
-        {
-            var part = await _partService.GetPartById(partId);
+public async Task<IActionResult> GetPartById(int partId)
+{
+    var part = await _partService.GetPartById(partId);
 
-            if (part == null)
-            {
-                return NotFound(new { message = "Запчасть с указанным id не найдена." });
-            }
+    if (part == null)
+    {
+        return NotFound(new { message = "Запчасть с указанным id не найдена." });
+    }
 
-            return Ok(part);
-        }
+    return Ok(part);
+}
 
         // Запрос для получения деталей по категории и фильтрам
         [HttpGet("ByCategory/{category}")]
@@ -80,6 +83,58 @@ namespace api_details.Controllers
             }
 
             return Ok(parts);
+        }
+
+        [AdminStatusAuthorize]
+        [HttpPost]
+        public async Task<IActionResult> CreatePart([FromBody] PartDto partDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                    return BadRequest(ModelState);
+                }
+                var partDtoResult = await _partService.CreatePart(partDto);
+                return CreatedAtAction(nameof(GetPartById), new { partId = partDtoResult.PartId }, partDtoResult);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Внутренняя ошибка сервера", detail = ex.Message });
+            }
+        }
+
+        [AdminStatusAuthorize]
+        [HttpPut("{partId}")]
+        public async Task<IActionResult> UpdatePart(int partId, [FromBody] PartDto partDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                    return BadRequest(ModelState);
+                }
+                var partDtoResult = await _partService.UpdatePart(partId, partDto);
+                if (partDtoResult == null)
+                {
+                    return NotFound(new { message = "Запчасть не найдена" });
+                }
+                return Ok(partDtoResult);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Внутренняя ошибка сервера", detail = ex.Message });
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:3000", "http://192.168.0.103:3000") // IP адреса для разрешения доступа
+        builder.WithOrigins("http://localhost:3000", "http://192.168.3.2:3000") // IP адреса для разрешения доступа
                .AllowAnyHeader()
                .AllowAnyMethod();
     });
