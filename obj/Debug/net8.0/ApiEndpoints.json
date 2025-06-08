@@ -17,6 +17,54 @@
   },
   {
     "ContainingType": "api_details.Controllers.AuthController",
+    "Method": "ConfirmChangePassword",
+    "RelativePath": "api/Auth/confirm-change-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_details.DataTransfer.ConfirmChangePasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_details.Controllers.AuthController",
+    "Method": "ConfirmLogin",
+    "RelativePath": "api/Auth/confirm-login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_details.DataTransfer.ConfirmLoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_details.Controllers.AuthController",
+    "Method": "ConfirmRegister",
+    "RelativePath": "api/Auth/confirm-register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_details.DataTransfer.ConfirmRegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_details.Controllers.AuthController",
     "Method": "Login",
     "RelativePath": "api/Auth/login",
     "HttpMethod": "POST",

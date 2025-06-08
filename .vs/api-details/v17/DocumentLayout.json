@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\diplom\\backend_coursework\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\diplom\\backend_coursework\\datatransfer\\changepasswordrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:datatransfer\\changepasswordrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\diplom\\backend_coursework\\datatransfer\\confirmlogindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:datatransfer\\confirmlogindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\diplom\\backend_coursework\\datatransfer\\confirmchangepassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:datatransfer\\confirmchangepassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\diplom\\backend_coursework\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\diplom\\backend_coursework\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\diplom\\backend_coursework\\services\\ipartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:services\\ipartservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,16 +47,8 @@
       "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:controllers\\partscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\diplom\\backend_coursework\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\diplom\\backend_coursework\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|c:\\users\\\u0430\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\desktop\\\u0434\u0438\u043F\u043B\u043E\u043C\\diplom\\backend_coursework\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9B3DAD57-65DF-433C-8AB6-0556A2B86EE8}|api-details.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,15 +58,77 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAB4BAAAAAAAAAAAowC0BAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-07T09:14:24.332Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "ConfirmLoginDto.cs",
+              "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\DataTransfer\\ConfirmLoginDto.cs",
+              "RelativeDocumentMoniker": "DataTransfer\\ConfirmLoginDto.cs",
+              "ToolTip": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\DataTransfer\\ConfirmLoginDto.cs",
+              "RelativeToolTip": "DataTransfer\\ConfirmLoginDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T08:17:42.261Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConfirmChangePasswordDto.cs",
+              "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\DataTransfer\\ConfirmChangePasswordDto.cs",
+              "RelativeDocumentMoniker": "DataTransfer\\ConfirmChangePasswordDto.cs",
+              "ToolTip": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\DataTransfer\\ConfirmChangePasswordDto.cs",
+              "RelativeToolTip": "DataTransfer\\ConfirmChangePasswordDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T08:17:03.154Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-08T07:14:31.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChangePasswordRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\DataTransfer\\ChangePasswordRequestDto.cs",
+              "RelativeDocumentMoniker": "DataTransfer\\ChangePasswordRequestDto.cs",
+              "ToolTip": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\DataTransfer\\ChangePasswordRequestDto.cs",
+              "RelativeToolTip": "DataTransfer\\ChangePasswordRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-08T07:11:55.951Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "PartsAuto.cs",
               "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\Models\\PartsAuto.cs",
               "RelativeDocumentMoniker": "Models\\PartsAuto.cs",
@@ -63,7 +141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "PartAutoCompatibilityDto.cs",
               "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\DataTransfer\\PartAutoCompatibilityDto.cs",
               "RelativeDocumentMoniker": "DataTransfer\\PartAutoCompatibilityDto.cs",
@@ -76,7 +154,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "PartsController.cs",
               "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\Controllers\\PartsController.cs",
               "RelativeDocumentMoniker": "Controllers\\PartsController.cs",
@@ -89,20 +167,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "IPartService.cs",
               "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\Services\\IPartService.cs",
               "RelativeDocumentMoniker": "Services\\IPartService.cs",
               "ToolTip": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\Services\\IPartService.cs",
               "RelativeToolTip": "Services\\IPartService.cs",
-              "ViewState": "AgIAAH0BAAAAAAAAAAAowIYBAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAMcBAAAAAAAAAAAwwOABAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-09T08:17:33.384Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "PartDto.cs",
               "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\DataTransfer\\PartDto.cs",
               "RelativeDocumentMoniker": "DataTransfer\\PartDto.cs",
@@ -115,19 +193,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
               "ToolTip": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\Data\\ApplicationDbContext.cs",
               "RelativeToolTip": "Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAA5wB8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-08T15:01:40.03Z"
+              "WhenOpened": "2024-12-08T15:01:40.03Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -135,19 +214,8 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T15:51:28.23Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u043E\u0440\\Desktop\\\u0414\u0438\u043F\u043B\u043E\u043C\\Diplom\\backend_coursework\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAuwFsAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-07T09:14:24.332Z"
+              "WhenOpened": "2024-12-06T15:51:28.23Z",
+              "EditorCaption": ""
             }
           ]
         }

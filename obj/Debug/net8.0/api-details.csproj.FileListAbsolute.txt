@@ -288,3 +288,8 @@ C:\Users\Администратор\Desktop\Диплом\Diplom\backend_coursewo
 C:\Users\Администратор\Desktop\Диплом\Diplom\backend_coursework\obj\Debug\net8.0\api-details.pdb
 C:\Users\Администратор\Desktop\Диплом\Diplom\backend_coursework\obj\Debug\net8.0\api-details.genruntimeconfig.cache
 C:\Users\Администратор\Desktop\Диплом\Diplom\backend_coursework\obj\Debug\net8.0\ref\api-details.dll
+C:\Users\Администратор\Desktop\Диплом\Diplom\backend_coursework\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\Администратор\Desktop\Диплом\Diplom\backend_coursework\bin\Debug\net8.0\MailKit.dll
+C:\Users\Администратор\Desktop\Диплом\Diplom\backend_coursework\bin\Debug\net8.0\MimeKit.dll
+C:\Users\Администратор\Desktop\Диплом\Diplom\backend_coursework\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\Администратор\Desktop\Диплом\Diplom\backend_coursework\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
