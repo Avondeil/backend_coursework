@@ -44,3 +44,6 @@ artifacts/
 *.cache
 *.tmp
 *.bak
+
+
+appsettings.json
