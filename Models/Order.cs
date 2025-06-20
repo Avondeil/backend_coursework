@@ -15,8 +15,12 @@ public partial class Order
     public string Status { get; set; } = null!;
 
     public string DeliveryAddress { get; set; } = null!;
+
+    public string? PaymentId { get; set; }
+
     [JsonIgnore]
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
     [JsonIgnore]
     public virtual User? User { get; set; }
 }

@@ -63,6 +63,8 @@ builder.Services.AddScoped<IGenerationService, GenerationService>();
 builder.Services.AddScoped<IBodyTypeService, BodyTypeService>();
 builder.Services.AddScoped<IPartService, PartService>();
 builder.WebHost.UseUrls("http://0.0.0.0:7240");
+builder.Services.AddHttpClient();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
