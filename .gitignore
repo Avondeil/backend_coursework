@@ -47,3 +47,4 @@ artifacts/
 
 
 appsettings.json
+appsettings.*.json
